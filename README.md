@@ -1,2 +1,0 @@
-# NextCart
-Minimal E-Commerce
