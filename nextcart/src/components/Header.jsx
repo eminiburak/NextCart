@@ -1,7 +1,8 @@
-'use client'
-import Link from 'next/link'
-import Image from 'next/image'
-import ThemeToggle from './ThemeToggle'
+'use client';
+import Link from 'next/link';
+import Image from 'next/image';
+import AuthButtons from './AuthButtons';
+import ThemeToggle from './ThemeToggle';
 
 export default function Header() {
   return (
@@ -16,23 +17,45 @@ export default function Header() {
             className="rounded-sm"
             priority={true}
           />
-          <Link
-            href="/"
-            className="text-2xl font-bold text-gray-800 dark:text-gray-100"
-          >
+          <Link href="/" className="text-2xl font-bold text-gray-800 dark:text-gray-100">
             NextCart
           </Link>
         </div>
 
         <div className="flex items-center gap-6">
           <ul className="hidden md:flex gap-6 text-gray-700 dark:text-gray-300">
-            <li><Link href="/products" className="hover:text-blue-600 dark:hover:text-blue-400">Products</Link></li>
-            <li><Link href="/about" className="hover:text-blue-600 dark:hover:text-blue-400">About</Link></li>
-            <li><Link href="/contact" className="hover:text-blue-600 dark:hover:text-blue-400">Contact</Link></li>
+            <li>
+              <Link href="/products" className="hover:text-blue-600 dark:hover:text-blue-400">
+                Products
+              </Link>
+            </li>
+            <li>
+              <Link href="/cart" className="hover:text-blue-600 dark:hover:text-blue-400">
+                Cart
+              </Link>
+            </li>
+            <li>
+              <Link href="/profile" className="hover:text-blue-600 dark:hover:text-blue-400">
+                Profile
+              </Link>
+            </li>
+            <li>
+              <Link href="/about" className="hover:text-blue-600 dark:hover:text-blue-400">
+                About
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="hover:text-blue-600 dark:hover:text-blue-400">
+                Contact
+              </Link>
+            </li>
           </ul>
           <ThemeToggle />
+          <div className="flex items-center gap-6">
+          <AuthButtons />
+        </div>
         </div>
       </nav>
     </header>
-  )
+  );
 }

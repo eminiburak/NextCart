@@ -1,63 +1,31 @@
-'use client'
-import { useState } from 'react'
-import Button from '../components/Button'
-import Card from '../components/Card'
-import Modal from '../components/Modal'
+import HomeClient from '../components/HomeClient';
 
-export default function ContactPage() {
-  const [message, setMessage] = useState('')
+export const metadata = {
+  title: 'NextCart | Home',
+  description: 'Browse stylish, affordable products built with Next.js and Tailwind CSS.',
+  openGraph: {
+    title: 'NextCart | Home',
+    description: 'Browse stylish, affordable products built with Next.js and Tailwind CSS.',
+    url: '#',
+    siteName: 'NextCart',
+    images: [
+      {
+        url: 'https://placehold.co/600x400.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+};
 
-  async function handleSubmit(event) {
-    event.preventDefault()
-    const formData = new FormData(event.target)
-    const res = await fetch('/actions/contact', {
-      method: 'POST',
-      body: formData,
-    })
-    const result = await res.text()
-    setMessage(result)
-  }
-
+export default function HomePage() {
   return (
-    <div className="container mx-auto p-6 max-w-lg">
-      <h1 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">
-        Contact Us
-      </h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          name="name"
-          type="text"
-          placeholder="Your name"
-          className="w-full p-2 border rounded-md bg-white text-gray-900 placeholder-gray-500
-                     dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 dark:placeholder-gray-400"
-          required
-        />
-        <input
-          name="email"
-          type="email"
-          placeholder="Your email"
-          className="w-full p-2 border rounded-md bg-white text-gray-900 placeholder-gray-500
-                     dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 dark:placeholder-gray-400"
-          required
-        />
-        <textarea
-          name="message"
-          placeholder="Your message"
-          rows="4"
-          className="w-full p-2 border rounded-md bg-white text-gray-900 placeholder-gray-500
-                     dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 dark:placeholder-gray-400"
-          required
-        />
-        <button
-          type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
-        >
-          Send Message
-        </button>
-      </form>
-      {message && (
-        <p className="mt-4 text-green-600 dark:text-green-400">{message}</p>
-      )}
+    <div className="container mx-auto text-center py-20">
+      <h1 className="text-4xl font-bold mb-4">Welcome to NextCart 🛒</h1>
+      <p className="text-gray-600 mb-8">Browse modern products built with Next.js and Tailwind.</p>
+      <HomeClient />
     </div>
-  )
+  );
 }
