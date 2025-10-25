@@ -1,8 +1,11 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
-import AuthButtons from './AuthButtons';
-import ThemeToggle from './ThemeToggle';
+import dynamic from 'next/dynamic';
+import SessionProvider from '@/components/SessionProvider';
+
+const AuthButtons = dynamic(() => import('./AuthButtons'), { ssr: false, loading: () => null });
+const ThemeToggle = dynamic(() => import('./ThemeToggle'), { ssr: false, loading: () => null });
 
 export default function Header() {
   return (
@@ -52,8 +55,10 @@ export default function Header() {
           </ul>
           <ThemeToggle />
           <div className="flex items-center gap-6">
-          <AuthButtons />
-        </div>
+            <SessionProvider>
+              <AuthButtons />
+            </SessionProvider>
+          </div>
         </div>
       </nav>
     </header>

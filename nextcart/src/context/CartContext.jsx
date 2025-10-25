@@ -1,5 +1,5 @@
 'use client';
-import { createContext, useState } from 'react';
+import { createContext } from 'react';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 export const CartContext = createContext();
@@ -37,7 +37,9 @@ export default function CartProvider({ children }) {
   const clearCart = () => setCart([]);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, updateQuantity, increment, decrement }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, removeFromCart, clearCart, updateQuantity, increment, decrement }}
+    >
       {children}
     </CartContext.Provider>
   );

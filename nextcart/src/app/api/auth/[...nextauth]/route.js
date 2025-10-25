@@ -1,10 +1,10 @@
-import NextAuth from 'next-auth'
-import GoogleProvider from 'next-auth/providers/google'
-import CredentialsProvider from 'next-auth/providers/credentials'
-import { FirestoreAdapter } from '@auth/firebase-adapter'
-import { getAdminDb } from '@/lib/firebaseAdmin'
+import NextAuth from 'next-auth';
+import GoogleProvider from 'next-auth/providers/google';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import { FirestoreAdapter } from '@auth/firebase-adapter';
+import { getAdminDb } from '@/lib/firebaseAdmin';
 
-export const runtime = 'nodejs'
+export const runtime = 'nodejs';
 
 // ✅ Required: environment variables in .env.local
 // TODO(auth): Provide valid GOOGLE_CLIENT_ID/GOOGLE_CLIENT_SECRET and Firebase Admin
@@ -30,19 +30,23 @@ export const authOptions = {
       },
       async authorize(credentials) {
         try {
-          const { getAdminDb } = await import('@/lib/firebaseAdmin')
-          const { compare } = await import('bcryptjs')
-          const db = getAdminDb()
-          const snap = await db.collection('users').where('email', '==', credentials.email).limit(1).get()
-          if (snap.empty) return null
-          const doc = snap.docs[0]
-          const user = doc.data()
-          const ok = await compare(credentials.password, user.password)
-          if (!ok) return null
-          return { id: doc.id, name: user.name || null, email: user.email }
+          const { getAdminDb } = await import('@/lib/firebaseAdmin');
+          const { compare } = await import('bcryptjs');
+          const db = getAdminDb();
+          const snap = await db
+            .collection('users')
+            .where('email', '==', credentials.email)
+            .limit(1)
+            .get();
+          if (snap.empty) return null;
+          const doc = snap.docs[0];
+          const user = doc.data();
+          const ok = await compare(credentials.password, user.password);
+          if (!ok) return null;
+          return { id: doc.id, name: user.name || null, email: user.email };
         } catch (e) {
-          console.error('Credentials authorize error:', e)
-          return null
+          console.error('Credentials authorize error:', e);
+          return null;
         }
       },
     }),
@@ -53,7 +57,7 @@ export const authOptions = {
   pages: {
     signIn: '/auth/signin',
   },
-}
+};
 
-const handler = NextAuth(authOptions)
-export { handler as GET, handler as POST }
+const handler = NextAuth(authOptions);
+export { handler as GET, handler as POST };

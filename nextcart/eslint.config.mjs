@@ -24,9 +24,9 @@ export default defineConfig([
       "prettier/prettier": "warn",
     },
     extends: [
-      js.configs.recommended, // base JS rules
-      pluginReact.configs.flat.recommended, // React best practices
-      prettierConfig, // disables conflicting rules with Prettier
+      js.configs.recommended,
+      pluginReact.configs.flat.recommended, 
+      prettierConfig,
     ],
     settings: {
       react: {

@@ -1,7 +1,3 @@
-// src/lib/api.js
-// Centralized API utility for FakeStoreAPI integration
-// Works with Next.js server components and client components
-
 const BASE_URL = 'https://fakestoreapi.com';
 
 async function parseJsonSafe(response) {
@@ -9,12 +5,12 @@ async function parseJsonSafe(response) {
     const text = await response.text();
     if (!text) return null;
     return JSON.parse(text);
-  } catch (_) {
+  } catch {
     return null;
   }
 }
 
-// 🛍️ Get all products
+// Get all products
 export async function getAllProducts() {
   try {
     const res = await fetch(`${BASE_URL}/products`, {
@@ -29,7 +25,7 @@ export async function getAllProducts() {
   }
 }
 
-// 📦 Get single product by ID
+// Get single product by ID
 export async function getProductById(id) {
   try {
     const res = await fetch(`${BASE_URL}/products/${id}`, {
@@ -44,11 +40,11 @@ export async function getProductById(id) {
   }
 }
 
-// 🗂️ Get all categories
+// Get all categories
 export async function getCategories() {
   try {
     const res = await fetch(`${BASE_URL}/products/categories`, {
-      cache: 'force-cache', // categories rarely change
+      cache: 'force-cache',
     });
     if (!res.ok) throw new Error('Failed to fetch categories');
     const data = await parseJsonSafe(res);
@@ -59,7 +55,7 @@ export async function getCategories() {
   }
 }
 
-// 🛒 Get products by category
+// Get products by category
 export async function getProductsByCategory(category) {
   try {
     const res = await fetch(`${BASE_URL}/products/category/${category}`, {

@@ -19,8 +19,8 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="container mx-auto p-6 max-w-lg">
-      <h1 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Contact Us</h1>
+    <div className="container mx-auto p-6 max-w-lg text-gray-900 dark:text-gray-100">
+      <h1 className="text-2xl font-bold mb-4">Contact Us</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           name="name"
@@ -45,9 +45,10 @@ export default function ContactForm() {
         />
         <button
           type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+          disabled={loading}
+          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          Send Message
+          {loading ? 'Sending…' : 'Send Message'}
         </button>
       </form>
       {message && <p className="mt-4 text-green-600 dark:text-green-400">{message}</p>}

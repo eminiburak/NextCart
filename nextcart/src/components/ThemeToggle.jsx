@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 export default function ThemeToggle() {
   const [theme, setTheme] = useState('light');
 
-  // Load saved theme from localStorage
+ 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
@@ -13,10 +13,12 @@ export default function ThemeToggle() {
     }
   }, []);
 
-  // Apply and save theme whenever it changes
+  
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark');
+    const isDark = theme === 'dark';
+    document.documentElement.classList.toggle('dark', isDark);
     localStorage.setItem('theme', theme);
+    window.dispatchEvent(new CustomEvent('theme-change', { detail: { theme, isDark } }));
   }, [theme]);
 
   return (

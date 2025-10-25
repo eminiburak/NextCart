@@ -1,22 +1,11 @@
 import ProductDetails from '@/components/ProductDetails';
 import { getProductById } from '@/lib/api';
+import CartProvider from '@/context/CartContext';
 
-export async function generateMetadata({ params }) {
-  const { id } = await params;
-  const product = await getProductById(id);
-  if (!product)
-    return {
-      title: 'Product Not Found | NextCart',
-      description: 'This product could not be located.',
-    };
+export async function generateMetadata() {
   return {
-    title: `${product.title} | NextCart`,
-    description: product.description,
-    openGraph: {
-      title: product.title,
-      description: product.description,
-      images: [{ url: product.image }],
-    },
+    title: 'Product | NextCart',
+    description: 'Product details',
   };
 }
 
@@ -24,5 +13,9 @@ export default async function ProductPage({ params }) {
   const { id } = await params;
   const product = await getProductById(id);
   if (!product) return <p>Product not found.</p>;
-  return <ProductDetails product={product} />;
+  return (
+    <CartProvider>
+      <ProductDetails product={product} />
+    </CartProvider>
+  );
 }

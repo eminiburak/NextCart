@@ -10,7 +10,7 @@ export const metadata = {
     siteName: 'NextCart',
     images: [
       {
-        url: 'https://placehold.co/600x400.png',
+        url: '/lightImg.png',
         width: 1200,
         height: 630,
       },
@@ -23,8 +23,12 @@ export const metadata = {
 export default function HomePage() {
   return (
     <div className="container mx-auto text-center py-20">
-      <h1 className="text-4xl font-bold mb-4">Welcome to NextCart 🛒</h1>
-      <p className="text-gray-600 mb-8">Browse modern products built with Next.js and Tailwind.</p>
+      <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+        Welcome to NextCart 🛒
+      </h1>
+      <p className="mb-8 text-gray-700 dark:text-gray-300">
+        Browse modern products built with Next.js and Tailwind.
+      </p>
       <HomeClient />
     </div>
   );

@@ -12,7 +12,15 @@ export default function ProductDetails({ product }) {
 
   return (
     <div className="flex flex-col md:flex-row items-center gap-8">
-      <Image src={product.image} alt={product.title || product.name} width={400} height={400} className="object-contain w-auto h-[400px]" />
+      <Image
+        src={product.image}
+        alt={product.title || product.name}
+        width={400}
+        height={400}
+        priority
+        sizes="(max-width: 768px) 100vw, 400px"
+        className="object-contain w-auto h-[400px]"
+      />
       <div>
         <h1 className="text-3xl font-bold mb-4">{product.title || product.name}</h1>
         <p className="mb-2 text-gray-600">{product.description}</p>
@@ -44,8 +52,15 @@ export default function ProductDetails({ product }) {
             {qty} × {product.title || product.name}
           </p>
           <div className="flex justify-center gap-3">
-            <button onClick={() => setOpen(false)} className="px-4 py-2 bg-gray-200 dark:bg-gray-800 dark:text-white rounded">Continue shopping</button>
-            <a href="/cart" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Go to cart</a>
+            <button
+              onClick={() => setOpen(false)}
+              className="px-4 py-2 bg-gray-200 dark:bg-gray-800 dark:text-white rounded"
+            >
+              Continue shopping
+            </button>
+            <a href="/cart" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+              Go to cart
+            </a>
           </div>
         </div>
       </Modal>

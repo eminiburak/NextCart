@@ -1,8 +1,7 @@
 import '../styles/globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { SessionProvider } from '@/components/SessionProvider';
-import CartProvider from '@/context/CartContext';
+import BackgroundImage from '@/components/BackgroundImage';
 
 export const metadata = {
   title: 'NextCart',
@@ -13,13 +12,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col bg-gray-50 text-gray-900">
-        <SessionProvider>
-        <CartProvider>
-          <Header />
-          <main className="flex-1 container mx-auto p-6">{children}</main>
-          <Footer />
-        </CartProvider>
-        </SessionProvider>
+        <Header />
+        <main className="relative flex-1">
+          <div className="absolute inset-0 -z-10 bg-linear-to-b from-white to-gray-50 dark:from-gray-950 dark:to-black" />
+          <BackgroundImage />
+          <div className="container mx-auto p-6">{children}</div>
+        </main>
+        <Footer />
       </body>
     </html>
   );

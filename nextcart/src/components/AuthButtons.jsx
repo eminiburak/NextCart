@@ -1,8 +1,8 @@
-'use client'
-import { signIn, signOut, useSession } from 'next-auth/react'
+'use client';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 export default function AuthButtons() {
-  const { data: session } = useSession()
+  const { data: session } = useSession();
 
   if (session) {
     return (
@@ -17,7 +17,7 @@ export default function AuthButtons() {
           Logout
         </button>
       </div>
-    )
+    );
   }
 
   return (
@@ -27,5 +27,5 @@ export default function AuthButtons() {
     >
       Login with Google
     </button>
-  )
+  );
 }
