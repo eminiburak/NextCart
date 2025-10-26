@@ -21,7 +21,7 @@ FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY----
 1) Install dependencies
 
 ```bash
-npm install
+npm install --legacy-peer-deps
 ```
 
 2) Create `.env.local` in the project root and fill in the variables above.
