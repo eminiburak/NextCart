@@ -1,6 +1,6 @@
 'use client';
 import { signIn } from 'next-auth/react';
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import Link from 'next/link';
 
 export default function SignInPage() {
@@ -8,6 +8,14 @@ export default function SignInPage() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [callbackError, setCallbackError] = useState('');
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const errorParam = params.get('error');
+    if (errorParam) setCallbackError(errorParam);
+  }, []);
+
 
   const onCredentials = async (e) => {
     e.preventDefault();
@@ -26,9 +34,7 @@ export default function SignInPage() {
     }
   };
 
-  const urlParams =
-    typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
-  const callbackError = urlParams?.get('error');
+
   return (
     <div className="max-w-md mx-auto p-6 bg-white dark:bg-gray-900 rounded-md border dark:border-gray-800 text-gray-900 dark:text-gray-100">
       <h1 className="text-2xl font-bold mb-4">Sign in</h1>
